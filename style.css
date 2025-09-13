@@ -59,62 +59,30 @@ header p {
   padding: 8px 16px;
 }
 
-/* Make all images inside cards fit the card width and not overflow */
-.card img {
-  /* Make image take full width of the card */
-  width: 100%;
-  /* Keep the image's aspect ratio */
-  height: auto;
-  /* Add rounded corners to match the card */
-  border-radius: 6px;
-  /* Add some space below the image */
-  margin-bottom: 12px;
-  /* Display block removes extra space below images */
-  display: block;
-  max-width: 100%;      /* Never let image be wider than the card */
-  max-height: 180px;    /* Prevent very tall images from overflowing card */
-  object-fit: cover;    /* Crop image if needed to fill area */
-}
-
-/* Make the timeline section scroll horizontally */
-section {
-  /* Use flexbox to arrange cards in a row */
-  display: flex;
-  flex-direction: row;
-  /* Allow horizontal scrolling if cards overflow */
-  overflow-x: auto;
-  /* Add some space below the timeline */
-  margin-bottom: 24px;
-  /* Add a little padding for nicer look */
-  padding: 16px 0;
-  /* Optional: smooth scrolling on supported browsers */
-  scroll-behavior: smooth;
-  /* Enable scroll snap for horizontal scrolling */
-  scroll-snap-type: x mandatory;
-}
-
-/* Style each card */
+/* Style each card with Intel-inspired colors and spacing */
 .card {
-  /* Give cards a fixed width */
-  width: 260px;
-  /* Add some margin between cards */
-  margin-right: 16px;
+  /* Make cards bigger and more proportional */
+  max-width: 40%;      /* Wider cards */
+  min-width: 260px;      /* Minimum width for small screens */
+  margin: 0 12px 0 0;    /* Space between cards, no auto margin */
+  text-align: center;
   /* Add a white background */
-  background: #fff;
-  /* Add rounded corners */
-  border-radius: 6px; /* Make cards more squared by reducing border radius */
+  background: #f7fbfd; /* Light Intel blue background */
+  border: 1.5px solid #e0eaf3; /* Subtle border for definition */
+  border-radius: 6px;
   /* Add a little shadow for depth */
-  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  box-shadow: 0 2px 8px rgba(0, 199, 253, 0.06); /* Soft blue shadow */
   /* Add padding inside the card */
-  padding: 16px;
+  padding: 28px 22px 22px 22px; /* More padding for bigger cards */
   /* Make sure content doesn't overflow */
   box-sizing: border-box;
   /* Optional: transition for hover effect */
   transition: transform 0.2s;
-  position: relative;
+  position: relative; /* Needed for overlay to fill card */
   z-index: 1;
   /* Make each card a snap point */
   scroll-snap-align: start;
+  color: #15395b; /* Intel blue for text */
 }
 
 /* Last card should not have extra margin */
@@ -129,49 +97,172 @@ section {
   box-shadow: 0 6px 16px rgba(0,0,0,0.12);
 }
 
-/* Add a hidden overlay text that appears behind card content on hover */
-.card::before {
-  /* The overlay text (change content as needed in HTML for each card) */
-  content: attr(data-behind);
-  /* Position the overlay absolutely inside the card */
+/* Card headings use Intel blue and spacing */
+.card h2 {
+  color: #0071c5; /* Intel blue */
+  font-size: 1.2rem;
+  margin: 0 0 4px 0;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.card h3 {
+  color: #0e284e; /* Darker Intel blue */
+  font-size: 1rem;
+  margin: 0 0 10px 0;
+  font-weight: 500;
+}
+
+/* Card paragraph text */
+.card p {
+  color: #23405c;
+  font-size: 0.97rem;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Card image spacing and border */
+.card img, .img-overlay img {
+  /* Make image take full width of the card */
+  width: 100%;
+  /* Keep the image's aspect ratio */
+  height: auto;
+  /* Add rounded corners to match the card */
+  border-radius: 6px;
+  /* Add some space below the image */
+  margin-bottom: 18px;       /* More space below image for bigger cards */
+  /* Display block removes extra space below images */
+  display: block;
+  max-width: 100%;
+  max-height: 240px;    /* Make images taller for bigger cards */
+  object-fit: cover;
+  border: 1px solid #e0eaf3;
+  background: #fff;
+}
+
+/* Additional details inside each card, hidden by default */
+.card-details {
+  display: none; /* Hide details by default */
+  margin-top: 12px;
+  background: #e0f4fb; /* Very light blue for contrast */
+  color: #0e284e;
+  padding: 10px 12px;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  box-shadow: 0 1px 4px rgba(0,113,197,0.06);
+}
+
+/* Show details when hovering over the card */
+.card:hover .card-details {
+  display: block;
+}
+
+/* Timeline section uses Flexbox for layout */
+section {
+  /* Use Flexbox to arrange cards in a row */
+  display: contents;
+  flex-direction: row;
+  /* Allow horizontal scrolling if cards overflow */
+  margin-bottom: 24px;
+  /* Add a little padding for nicer look */
+  padding: 16px 0;
+  /* Enable smooth scrolling */
+  scroll-behavior: smooth;
+  /* Enable scroll snap for horizontal scrolling */
+  scroll-snap-type: x mandatory;
+  /* Align cards to the start of the section */
+  align-items: flex-start;
+  justify-content: flex-start; /* Align cards to the left for horizontal scroll */
+  /* Add horizontal padding for large screens */
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+/* Container: center content and limit width for large screens */
+.container {
+  max-width: 1200px; /* Wider for desktop/laptop */
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+  .card {
+    max-width: 100%;
+    min-width: 0;
+    margin-right: 0;
+    margin-bottom: 16px;
+    scroll-snap-align: none;
+  }
+  .card:last-child {
+    margin-bottom: 0;
+  }
+
+
+
+/* Container for image and overlay */
+.img-overlay {
+  position: relative;
+  display: block;
+}
+
+/* The overlay text, hidden by default */
+.img-overlay-text {
   position: absolute;
-  /* Stretch overlay to cover the card */
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  /* Make text large and centered */
+  /* Center the text */
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 2rem;
-  color: rgba(30, 60, 120, 0.08); /* Very light, so it's not distracting */
-  /* Hide overlay by default */
-  opacity: 0;
-  pointer-events: none;
-  /* Put behind the card content */
-  z-index: 0;
-  /* Smooth transition */
-  transition: opacity 0.3s;
-  /* Prevent overlay from affecting layout */
-  border-radius: 6px; /* Match overlay corners to new card shape */
+  color: #fff;
+  font-size: 1rem;
+  background: rgba(0, 113, 197, 0.7); /* Intel blue with transparency */
+  opacity: 0; /* Start hidden */
+  transition: opacity 0.4s;
+  border-radius: 6px; /* Match card/image corners */
+  text-align: center;
+  padding: 10px;
+  pointer-events: none; /* Let mouse events pass through */
+  overflow-wrap: break-word; /* Allow long words to wrap */
+  word-break: break-word;    /* Break long words if needed */
+  overflow-y: auto;          /* Allow vertical scroll if text is too long */
+  box-sizing: border-box;    /* Include padding in width/height */
+  max-height: 100%;          /* Prevent overflow outside image */
+  z-index: 2; /* Make sure overlay is above content */
 }
 
-/* Show the overlay when hovering over the card */
-.card:hover::before {
+/* Show overlay text when hovering the card */
+.card:hover .img-overlay-text {
   opacity: 1;
 }
-
-/* Limit main content width and center it on the page */
-.container {
-  /* Set a maximum width for large screens */
-  max-width: 1100px;
-  /* Center the container horizontally */
-  margin-left: auto;
-  margin-right: auto;
-  /* Add a little side padding for small screens */
-  padding-left: 16px;
-  padding-right: 16px;
+.img-overlay-text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* Center the text */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 1.1rem;
+  background: rgb(0, 112, 197); /* Intel blue with transparency */
+  opacity: 0; /* Start hidden */
+  transition: opacity 0.4s;
+  border-radius: 6px; /* Match card/image corners */
+  text-align: center;
+  padding: 10px;
+  pointer-events: none; /* Let mouse events pass through */
 }
+
+/* Show overlay text when hovering the image container */
+.img-overlay:hover .img-overlay-text {
+  opacity: 100%;
+}
+
 
 
