@@ -59,3 +59,119 @@ header p {
   padding: 8px 16px;
 }
 
+/* Make all images inside cards fit the card width and not overflow */
+.card img {
+  /* Make image take full width of the card */
+  width: 100%;
+  /* Keep the image's aspect ratio */
+  height: auto;
+  /* Add rounded corners to match the card */
+  border-radius: 6px;
+  /* Add some space below the image */
+  margin-bottom: 12px;
+  /* Display block removes extra space below images */
+  display: block;
+  max-width: 100%;      /* Never let image be wider than the card */
+  max-height: 180px;    /* Prevent very tall images from overflowing card */
+  object-fit: cover;    /* Crop image if needed to fill area */
+}
+
+/* Make the timeline section scroll horizontally */
+section {
+  /* Use flexbox to arrange cards in a row */
+  display: flex;
+  flex-direction: row;
+  /* Allow horizontal scrolling if cards overflow */
+  overflow-x: auto;
+  /* Add some space below the timeline */
+  margin-bottom: 24px;
+  /* Add a little padding for nicer look */
+  padding: 16px 0;
+  /* Optional: smooth scrolling on supported browsers */
+  scroll-behavior: smooth;
+  /* Enable scroll snap for horizontal scrolling */
+  scroll-snap-type: x mandatory;
+}
+
+/* Style each card */
+.card {
+  /* Give cards a fixed width */
+  width: 260px;
+  /* Add some margin between cards */
+  margin-right: 16px;
+  /* Add a white background */
+  background: #fff;
+  /* Add rounded corners */
+  border-radius: 6px; /* Make cards more squared by reducing border radius */
+  /* Add a little shadow for depth */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  /* Add padding inside the card */
+  padding: 16px;
+  /* Make sure content doesn't overflow */
+  box-sizing: border-box;
+  /* Optional: transition for hover effect */
+  transition: transform 0.2s;
+  position: relative;
+  z-index: 1;
+  /* Make each card a snap point */
+  scroll-snap-align: start;
+}
+
+/* Last card should not have extra margin */
+.card:last-child {
+  margin-right: 0;
+}
+
+/* Add a simple hover effect */
+.card:hover {
+  /* Slightly lift the card on hover */
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+}
+
+/* Add a hidden overlay text that appears behind card content on hover */
+.card::before {
+  /* The overlay text (change content as needed in HTML for each card) */
+  content: attr(data-behind);
+  /* Position the overlay absolutely inside the card */
+  position: absolute;
+  /* Stretch overlay to cover the card */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* Make text large and centered */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: rgba(30, 60, 120, 0.08); /* Very light, so it's not distracting */
+  /* Hide overlay by default */
+  opacity: 0;
+  pointer-events: none;
+  /* Put behind the card content */
+  z-index: 0;
+  /* Smooth transition */
+  transition: opacity 0.3s;
+  /* Prevent overlay from affecting layout */
+  border-radius: 6px; /* Match overlay corners to new card shape */
+}
+
+/* Show the overlay when hovering over the card */
+.card:hover::before {
+  opacity: 1;
+}
+
+/* Limit main content width and center it on the page */
+.container {
+  /* Set a maximum width for large screens */
+  max-width: 1100px;
+  /* Center the container horizontally */
+  margin-left: auto;
+  margin-right: auto;
+  /* Add a little side padding for small screens */
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+
