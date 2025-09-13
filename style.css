@@ -11,14 +11,19 @@ header {
   background-color: #0e284e;
   /* Add some padding around the header */
   padding: 16px 0;
-  /* Use flexbox to arrange items horizontally */
+  /* Use flexbox to center items horizontally and vertically */
   display: flex;
-  /* Center items vertically */
-  align-items: center;
-  /* Add space between logo and any other content */
-  justify-content: start;
+  align-items: center;      /* Center items vertically */
+  justify-content: center;  /* Center items horizontally */
   /* Add a subtle shadow for modern look */
   box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+/* Center the content inside the header */
+header > div {
+  display: flex;                /* Use flexbox for layout */
+  flex-direction: column;       /* Stack items vertically */
+  align-items: center;          /* Center items horizontally */
 }
 
 /* Style for the logo image inside the header */
@@ -28,8 +33,25 @@ header img {
   /* Keep the logo's aspect ratio */
   width: auto;
   /* Add some margin to the right of the logo */
-  margin-right: 16px;
-  padding: 16px;
+  margin-right: 0;              /* Remove right margin for centering */
+  padding: 30px;
+  display: block;
+  margin-left: auto;            /* Center image horizontally */
+  margin-right: auto;
+}
+
+/* Center the header title */
+header h1 {
+  /* Use a larger font size for the title */
+  font-size: 1.5rem;
+  /* Remove default margin */
+  margin: 0;
+  /* Use a modern color */
+  color: #ffffff;
+  /* Use medium font weight */
+  font-weight: bolder;
+  padding: 50px;
+  text-align: center;           /* Center the text */
 }
 
 /* Optional: style header title if present */
@@ -42,7 +64,7 @@ header h1 {
   color: #ffffff;
   /* Use medium font weight */
   font-weight: 500;
-  padding: 15px;
+  padding: 30px;
   font-weight: bolder;
 }
 
@@ -51,12 +73,12 @@ header p {
   /* Use a smaller font size for the subtitle */
   font-size: 1rem;
   /* Remove default margin */
-  margin: 0;
+  margin: 10px;
   /* Use a lighter color */
   color: #eeeeee;
   /* Use regular font weight */
   font-weight: 400;
-  padding: 8px 16px;
+  padding: 10x;
 }
 
 /* Style each card with Intel-inspired colors and spacing */
