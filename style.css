@@ -3,20 +3,35 @@
 /* Use Inter as the main font for the page */
 body {
   font-family: 'Inter', sans-serif;
+  background-color: #f8f8f8;
+  color: #333;
+}
+
+h1, h2, h3, p {
+      margin: 0;
+}
+
+/* Timeline container uses Flexbox for horizontal alignment */
+.timeline {
+  display: flex;                  /* Use Flexbox to arrange cards in a row */
+  flex-direction: row;            /* Align cards horizontally */
+  flex-wrap: wrap;                /* Allow cards to wrap on small screens */
+  justify-content: center;        /* Center cards horizontally */
+  align-items: stretch;           /* Stretch cards to same height */
+  gap: 1.5rem;                    /* Space between cards */
+  max-width: 1100px;
+  margin: 3rem auto;
+  padding: 0 1rem;
+  /* Remove grid-template-columns and grid gap */
 }
 
 /* Style for the header */
 header {
-  /* Add a light background color */
-  background-color: #0e284e;
-  /* Add some padding around the header */
-  padding: 16px 0;
-  /* Use flexbox to center items horizontally and vertically */
-  display: flex;
-  align-items: center;      /* Center items vertically */
-  justify-content: center;  /* Center items horizontally */
-  /* Add a subtle shadow for modern look */
-  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  background-color: #020024;
+  background: linear-gradient(90deg,rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 44%, rgba(14, 191, 227, 1) 100%);
+  color:#ffffff;
+  text-align: center;
+  padding: 3rem 1rem;
 }
 
 /* Center the content inside the header */
@@ -39,193 +54,92 @@ header img {
   margin-left: auto;            /* Center image horizontally */
   margin-right: auto;
 }
-
-/* Center the header title */
-header h1 {
-  /* Use a larger font size for the title */
-  font-size: 1.5rem;
-  /* Remove default margin */
-  margin: 0;
-  /* Use a modern color */
-  color: #ffffff;
-  /* Use medium font weight */
-  font-weight: bolder;
-  padding: 50px;
-  text-align: center;           /* Center the text */
+/* Header text styles */
+.header h1 {
+      font-size: 1.8rem;
+      color: #ffffff;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
 }
 
-/* Optional: style header title if present */
-header h1 {
-  /* Use a larger font size for the title */
-  font-size: 1.5rem;
-  /* Remove default margin */
-  margin: 0;
-  /* Use a modern color */
-  color: #ffffff;
-  /* Use medium font weight */
-  font-weight: 500;
-  padding: 30px;
-  font-weight: bolder;
+.header h2 {
+      font-size: 2.2rem;
+      color: #ffffff;
+      font-weight: 900;
+      margin-top: 0.5rem;
 }
 
-
-header p {
-  /* Use a smaller font size for the subtitle */
-  font-size: 1rem;
-  /* Remove default margin */
-  margin: 10px;
-  /* Use a lighter color */
-  color: #eeeeee;
-  /* Use regular font weight */
-  font-weight: 400;
-  padding: 10x;
+.header p {
+      max-width: 650px;
+      color: #e0eaf3;
+      margin: 1rem auto 0;
+      font-size: 1.1rem;
+      line-height: 1.5;
 }
 
-/* Style each card with Intel-inspired colors and spacing */
+/* Milestone card styles for Intel look */
 .card {
-  /* Make cards bigger and more proportional */
-  max-width: 40%;      /* Wider cards */
-  min-width: 260px;      /* Minimum width for small screens */
-  margin: 0 12px 0 0;    /* Space between cards, no auto margin */
-  text-align: center;
-  /* Add a white background */
-  background: #f7fbfd; /* Light Intel blue background */
-  border: 1.5px solid #e0eaf3; /* Subtle border for definition */
-  border-radius: 6px;
-  /* Add a little shadow for depth */
-  box-shadow: 0 2px 8px rgba(0, 199, 253, 0.06); /* Soft blue shadow */
-  /* Add padding inside the card */
-  padding: 28px 22px 22px 22px; /* More padding for bigger cards */
-  /* Make sure content doesn't overflow */
-  box-sizing: border-box;
-  /* Optional: transition for hover effect */
-  transition: transform 0.2s;
-  position: relative; /* Needed for overlay to fill card */
-  z-index: 1;
-  /* Make each card a snap point */
-  scroll-snap-align: start;
-  color: #15395b; /* Intel blue for text */
+  background: #f7fbfd;            /* Light Intel blue background */
+  border: 1.5px solid #e0eaf3;    /* Subtle blue border */
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0,113,197,0.08); /* Soft blue shadow */
+  padding: 1.5rem 1.2rem;
+  margin: 0;                      /* Let Flexbox handle spacing */
+  color: #15395b;                 /* Intel blue for text */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: box-shadow 0.3s;
+  min-width: 260px;
+  max-width: 320px;
 }
-
-/* Last card should not have extra margin */
-.card:last-child {
-  margin-right: 0;
+.card h2{
+  color:#15395b;
 }
-
-/* Add a simple hover effect */
+/* Card hover effect for interactivity */
 .card:hover {
-  /* Slightly lift the card on hover */
-  transform: translateY(-6px) scale(1.03);
-  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+  box-shadow: 0 6px 16px rgba(0,113,197,0.18);
 }
 
-/* Card headings use Intel blue and spacing */
-.card h2 {
-  color: #0071c5; /* Intel blue */
-  font-size: 1.2rem;
-  margin: 0 0 4px 0;
-  font-weight: 700;
-  letter-spacing: 1px;
-}
-
+/* Card heading styles */
 .card h3 {
-  color: #0e284e; /* Darker Intel blue */
-  font-size: 1rem;
-  margin: 0 0 10px 0;
-  font-weight: 500;
+  color: #0071c5;                 /* Intel blue */
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
 }
 
-/* Card paragraph text */
+/* Card paragraph styles */
 .card p {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
   color: #23405c;
   font-size: 0.97rem;
   margin: 0;
   line-height: 1.5;
 }
 
-/* Card image spacing and border */
-.card img, .img-overlay img {
-  /* Make image take full width of the card */
-  width: 100%;
-  /* Keep the image's aspect ratio */
-  height: auto;
-  /* Add rounded corners to match the card */
-  border-radius: 6px;
-  /* Add some space below the image */
-  margin-bottom: 18px;       /* More space below image for bigger cards */
-  /* Display block removes extra space below images */
+/* Image overlay container for card images */
+.img-overlay {
+  position: relative;    /* Needed for overlay positioning */
   display: block;
-  max-width: 100%;
-  max-height: 240px;    /* Make images taller for bigger cards */
+  width: 100%;           /* Make overlay container fill the card width */
+  height: 180px;         /* Match the max-height of .card img for consistent sizing */
+  overflow: hidden;      /* Prevent overlay from spilling outside */
+}
+
+/* Card image styles */
+.card img {
+  width: 100%;
+  height: 100%;          /* Make image fill the overlay container */
+  border-radius: 12px;
   object-fit: cover;
+  margin-top: 0;
+  margin-bottom: 1rem;
   border: 1px solid #e0eaf3;
   background: #fff;
-}
-
-/* Additional details inside each card, hidden by default */
-.card-details {
-  display: none; /* Hide details by default */
-  margin-top: 12px;
-  background: #e0f4fb; /* Very light blue for contrast */
-  color: #0e284e;
-  padding: 10px 12px;
-  border-radius: 4px;
-  font-size: 0.95rem;
-  box-shadow: 0 1px 4px rgba(0,113,197,0.06);
-}
-
-/* Show details when hovering over the card */
-.card:hover .card-details {
-  display: block;
-}
-
-/* Timeline section uses Flexbox for layout */
-section {
-  /* Use Flexbox to arrange cards in a row */
-  display: contents;
-  flex-direction: row;
-  /* Allow horizontal scrolling if cards overflow */
-  margin-bottom: 24px;
-  /* Add a little padding for nicer look */
-  padding: 16px 0;
-  /* Enable smooth scrolling */
-  scroll-behavior: smooth;
-  /* Enable scroll snap for horizontal scrolling */
-  scroll-snap-type: x mandatory;
-  /* Align cards to the start of the section */
-  align-items: flex-start;
-  justify-content: flex-start; /* Align cards to the left for horizontal scroll */
-  /* Add horizontal padding for large screens */
-  padding-left: 24px;
-  padding-right: 24px;
-}
-
-/* Container: center content and limit width for large screens */
-.container {
-  max-width: 1200px; /* Wider for desktop/laptop */
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 16px;
-  padding-right: 16px;
-}
-
-  .card {
-    max-width: 100%;
-    min-width: 0;
-    margin-right: 0;
-    margin-bottom: 16px;
-    scroll-snap-align: none;
-  }
-  .card:last-child {
-    margin-bottom: 0;
-  }
-
-
-
-/* Container for image and overlay */
-.img-overlay {
-  position: relative;
-  display: block;
+  max-height: 180px;
 }
 
 /* The overlay text, hidden by default */
@@ -241,50 +155,47 @@ section {
   justify-content: center;
   color: #fff;
   font-size: 1rem;
-  background: rgba(0, 113, 197, 0.7); /* Intel blue with transparency */
+  background: #0070c5; /* Intel blue with transparency */
   opacity: 0; /* Start hidden */
-  transition: opacity 0.4s;
-  border-radius: 6px; /* Match card/image corners */
+  transition: opacity 0.3s;
+  border-radius: 12px; /* Match card/image corners */
   text-align: center;
   padding: 10px;
   pointer-events: none; /* Let mouse events pass through */
-  overflow-wrap: break-word; /* Allow long words to wrap */
-  word-break: break-word;    /* Break long words if needed */
-  overflow-y: auto;          /* Allow vertical scroll if text is too long */
-  box-sizing: border-box;    /* Include padding in width/height */
-  max-height: 100%;          /* Prevent overflow outside image */
-  z-index: 2; /* Make sure overlay is above content */
-}
-
-/* Show overlay text when hovering the card */
-.card:hover .img-overlay-text {
-  opacity: 1;
-}
-.img-overlay-text {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  /* Center the text */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  font-size: 1.1rem;
-  background: rgb(0, 112, 197); /* Intel blue with transparency */
-  opacity: 0; /* Start hidden */
-  transition: opacity 0.4s;
-  border-radius: 6px; /* Match card/image corners */
-  text-align: center;
-  padding: 10px;
-  pointer-events: none; /* Let mouse events pass through */
+  box-sizing: border-box; /* Ensure padding doesn't overflow */
 }
 
 /* Show overlay text when hovering the image container */
 .img-overlay:hover .img-overlay-text {
-  opacity: 100%;
+  opacity: 1;
 }
 
+/* Add this block for card details interactivity */
+/* The extra details inside each card are hidden by default */
+.card-details {
+  display: none;              /* Hide details by default */
+  margin-top: 0.5rem;
+  background: #e0f4fb;        /* Light blue background for details */
+  color: #15395b;             /* Intel blue for text */
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  font-size: 1rem;
+}
 
+/* Show the details when hovering over the card */
+.card:hover .card-details {
+  display: block;
+}
 
+/* Responsive adjustments for small screens */
+@media (max-width: 700px) {
+  .timeline {
+    flex-direction: column;      /* Stack cards vertically on small screens */
+    align-items: center;
+    gap: 1rem;
+  }
+  .card {
+    max-width: 95vw;
+    min-width: 0;
+  }
+}
